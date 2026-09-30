@@ -98,3 +98,64 @@ plt.title("Vérification d'une cinétique d'ordre 0")
 plt.legend()
 plt.grid()
 plt.show()
+
+# =========================
+# QUESTION 4
+# Temps de demi-réaction (ordre 0)
+# =========================
+
+# Ordre 0 : t1/2 = c20 / (2*k2)
+c20 = c2[0]
+t12_2 = c20 / (2 * k2)
+
+print("\nQUESTION 4")
+print("t1/2,2 =", t12_2, "min")
+print("t1/2,2 / t1/2,1 =", t12_2 / t12_1)
+
+
+# =========================
+# QUESTION 5
+# Concentration d'éthanol dans la bière
+# =========================
+
+M_C, M_H, M_O = 12, 1.0, 16  # g/mol
+M_eth = 2 * M_C + 6 * M_H + M_O  # C2H6O
+rho_eth = 790  # g/L
+d = 0.06
+
+# 1 L de bière contient d litres d'éthanol
+C0_g = d * rho_eth  # g/L
+C0 = C0_g / M_eth  # mol/L
+
+print("\nQUESTION 5")
+print("M(éthanol) =", M_eth, "g/mol")
+print("C0 =", C0_g, "g/L")
+print("C0 =", C0, "mol/L")
+
+
+# =========================
+# QUESTION 6
+# Alcoolémie d'Alice au cours du temps
+# =========================
+
+Ve = 2 * 0.50  # L (deux bières de 50 cL)
+Vs = 40  # L
+
+
+def c(t):
+    return C0 * Ve / Vs * (1 - np.exp(-k1 * t)) - k2 * t
+
+
+# On s'arrête quand l'alcoolémie revient à 0
+t_fin = C0 * Ve / Vs / k2
+t = np.linspace(0, t_fin, 1000)
+
+print("\nQUESTION 6")
+print("Alcoolémie nulle à t =", t_fin, "min")
+
+plt.plot(t, c(t))
+plt.xlabel("Temps t (min)")
+plt.ylabel(r"$c$ (mol/L)")
+plt.title("Alcoolémie d'Alice")
+plt.grid()
+plt.show()
