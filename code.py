@@ -57,17 +57,22 @@ t12_1 = np.log(2) / k1
 print("t1/2,1 =", t12_1, "min")
 
 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
+
 # =========================
 # QUESTION 3
 # Oxydation / élimination
 # =========================
 
-t2 = np.array([0, 120, 240, 360, 480, 600, 720])  # min
-c2 = np.array([0.0500, 0.0413, 0.0326, 0.0239, 0.0152, 0.0065, 0])
+# On retire le point t = 720 min (c2 = 0) : la concentration ne peut pas
+# être négative, donc cette valeur est ramenée à 0 et n'est pas alignée
+# sur la droite (elle biaiserait la pente).
+t2 = np.array([0, 120, 240, 360, 480, 600])  # min
+c2 = np.array([0.0500, 0.0413, 0.0326, 0.0239, 0.0152, 0.0065])  # mol/L
 
-# Pour une réaction d'ordre 0 :
-# c2 = c20 - k2*t
-
+# Pour une réaction d'ordre 0 : c2 = c20 - k2*t
 resultat2 = linregress(t2, c2)
 
 pente2 = resultat2.slope
@@ -86,7 +91,7 @@ plt.plot(
     t2,
     pente2 * t2 + ordonnee2,
     color="red",
-    label="Régression linéaire"
+    label=f"Régression linéaire (k2 = {k2:.2e} mol·L$^{{-1}}$·min$^{{-1}}$)"
 )
 
 plt.xlabel("Temps t (min)")
