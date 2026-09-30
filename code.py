@@ -177,7 +177,6 @@ print("t_max =", t_max, "min")
 print("\nQUESTION 7")
 print("c_max =", c_max, "mol/L")
 print("c_max =", c_max * M_eth, "g/L")
-=======
 
 
 
