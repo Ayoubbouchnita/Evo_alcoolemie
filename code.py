@@ -160,6 +160,7 @@ plt.title("Alcoolémie d'Alice")
 plt.grid()
 plt.show()
 
+
 # =========================
 # QUESTION 7 et 8
 # Maximum de l'alcoolémie
@@ -176,3 +177,42 @@ print("t_max =", t_max, "min")
 print("\nQUESTION 7")
 print("c_max =", c_max, "mol/L")
 print("c_max =", c_max * M_eth, "g/L")
+=======
+
+
+
+from scipy.optimize import brentq
+
+
+
+# QUESTION 9
+# Droit de conduire à t_max ?
+
+limite_g = 0.5                 # g/L 
+c_lim = limite_g / M_eth        # mol/L
+
+print("\nQUESTION 9")
+print("c_max =", c_max, "mol/L =", c_max * M_eth, "g/L")
+print("Limite =", limite_g, "g/L")
+print("Alice peut conduire ?", c_max < c_lim)
+
+
+# QUESTION 10
+# Instant où l'alcoolémie repasse sous la limite
+
+t_lim = brentq(lambda x: c(x) - c_lim, t_max, t_fin)
+
+print("\nQUESTION 10")
+print("t_lim =", t_lim, "min =", t_lim / 60, "h")
+
+# Tracé
+plt.plot(t, c(t), label="Alcoolémie d'Alice")
+plt.axhline(c_lim, color="red", linestyle="--", label=f"Limite légale ({limite_g} g/L)")
+plt.plot(t_max, c_max, "go", label=f"Maximum ({t_max:.1f} min)")
+plt.plot(t_lim, c_lim, "ro", label=f"Retour sous la limite ({t_lim:.0f} min)")
+plt.xlabel("Temps t (min)")
+plt.ylabel(r"$c$ (mol/L)")
+plt.title("Alcoolémie d'Alice et limite légale")
+plt.legend()
+plt.grid()
+plt.show()
