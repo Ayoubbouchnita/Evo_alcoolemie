@@ -7,18 +7,15 @@ from scipy.stats import linregress
 # Absorption de l'alcool
 # =========================
 
-# Données expérimentales
-t1 = np.array([1.73, 2.8, 5.5, 18, 22])  # min
-c1 = np.array([3.0, 2.5, 1.6, 0.2, 0.1])  # mol/L
-
-# Concentration initiale :
-# 1 mole dans 0.250 L
+# Concentration initiale : 1 mole dans 0.250 L
 c10 = 1 / 0.250
-
 print("c1,0 =", c10, "mol/L")
 
-# Pour une cinétique d'ordre 1 :
-# ln(c1/c10) = -k1*t
+# Données expérimentales (avec le point t = 0)
+t1 = np.array([0, 1.73, 2.8, 5.5, 18, 22])  # min
+c1 = np.array([c10, 3.0, 2.5, 1.6, 0.2, 0.1])  # mol/L
+
+# Pour une cinétique d'ordre 1 : ln(c1/c10) = -k1*t
 y1 = np.log(c1 / c10)
 
 # Régression linéaire
@@ -39,7 +36,7 @@ plt.plot(
     t1,
     pente1 * t1 + ordonnee1,
     color="red",
-    label="Régression linéaire"
+    label=f"Régression linéaire (k1 = {k1:.3f} min$^{{-1}}$)"
 )
 
 plt.xlabel("Temps t (min)")
