@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 
-# =========================
+
 # QUESTION 1
 # Absorption de l'alcool
-# =========================
+
 
 # Données expérimentales
 t1 = np.array([1.73, 2.8, 5.5, 18, 22])  # min
@@ -17,11 +17,10 @@ c10 = 1 / 0.250
 
 print("c1,0 =", c10, "mol/L")
 
-# Pour une cinétique d'ordre 1 :
 # ln(c1/c10) = -k1*t
 y1 = np.log(c1 / c10)
 
-# Régression linéaire
+
 resultat1 = linregress(t1, y1)
 
 pente1 = resultat1.slope
@@ -50,20 +49,18 @@ plt.grid()
 plt.show()
 
 
-# =========================
+
 # QUESTION 2
-# Temps de demi-réaction
-# =========================
+# Temps de demi_réaction
+
 
 t12_1 = np.log(2) / k1
 
 print("t1/2,1 =", t12_1, "min")
 
 
-# =========================
 # QUESTION 3
-# Oxydation / élimination
-# =========================
+
 
 t2 = np.array([0, 120, 240, 360, 480, 600, 720])  # min
 c2 = np.array([0.0500, 0.0413, 0.0326, 0.0239, 0.0152, 0.0065, 0])
@@ -99,10 +96,8 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# =========================
+
 # QUESTION 4
-# Temps de demi-réaction (ordre 0)
-# =========================
 
 # Ordre 0 : t1/2 = c20 / (2*k2)
 c20 = c2[0]
@@ -113,10 +108,9 @@ print("t1/2,2 =", t12_2, "min")
 print("t1/2,2 / t1/2,1 =", t12_2 / t12_1)
 
 
-# =========================
 # QUESTION 5
 # Concentration d'éthanol dans la bière
-# =========================
+
 
 M_C, M_H, M_O = 12, 1.0, 16  # g/mol
 M_eth = 2 * M_C + 6 * M_H + M_O  # C2H6O
@@ -133,10 +127,8 @@ print("C0 =", C0_g, "g/L")
 print("C0 =", C0, "mol/L")
 
 
-# =========================
 # QUESTION 6
 # Alcoolémie d'Alice au cours du temps
-# =========================
 
 Ve = 2 * 0.50  # L (deux bières de 50 cL)
 Vs = 40  # L
